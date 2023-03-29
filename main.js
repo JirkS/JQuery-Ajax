@@ -17,31 +17,8 @@ class Item {
         return this.url;
     }
 
-    Vypis(){
+    vypis(){
         return "Kryptomena: " +this.name+ ", cena: " +this.price+ ", url: " +this.url;
-    }
-}
-
-class Uzivatel {
-    constructor(name, state){
-        this.name = name;
-        this.state = state;
-    }
-
-    Name(){
-        return this.name;
-    }
-    
-    State(){
-        return this.state;
-    }
-
-    Plus(int){
-        this.state += int;
-    }
-
-    Vypis(){
-        return "Uzivatel " +this.name+ ", ucet: " +this.state;
     }
 }
 
@@ -51,7 +28,7 @@ let pocetRefresh = 0;
 let bezi = false;
 
 function neco(kolikrat){
-    $("aside").innerHTML = "";
+    document.getElementById("aside").innerHTML = "";
     if(myInterval === false){
         myInterval = setInterval(function() {
             neco(pocet);
@@ -128,24 +105,12 @@ function addRow(item) {
         cell.appendChild(cellText);
         row.appendChild(cell);
 
-        btn = document.createElement("button");
-                btn.type = "submit";
-                btn.innerHTML = "buy";
-                btn.addEventListener("click", () => {buy(item.Price())});
-        cell = document.createElement("td");
-        cellText = btn;
-        cell.appendChild(cellText);
-        row.appendChild(cell);
-
         row.id = item.Url();
 
       $("#tbody")[0].appendChild(row);
     }
 }
 
-let u = new Uzivatel("Jirka", 0);
-let vypis = document.getElementById("vypis");
-vypis.textContent = u.Vypis();
 let myInterval = false;
 neco(pocet);
 
@@ -193,8 +158,4 @@ function necoDalsiho(myUrl, bool){
       });
 }
 
-function buy(value){
 
-    u.Plus(value);
-    vypis.textContent = u.Vypis();
-}
